@@ -8,14 +8,14 @@ namespace TotalSearch.Utilities
 {
     public class DirTools
     {
-        public static List<string> GetAllDirectories(string path)
+        public List<string> GetAllDirectories(string path)
         {
             List<string> DirectoriesList = new List<string>();
             GetAllDirectories(path, ref DirectoriesList);
             return DirectoriesList;
         }
 
-        public static List<string> GetAllFiles(string path)
+        public List<string> GetAllFiles(string path)
         {
             List<string> FilesList = new List<string>();
 
@@ -31,7 +31,7 @@ namespace TotalSearch.Utilities
             return FilesList;
         }
 
-        static void GetAllDirectories(string path, ref List<string> DirectoriesList)
+        void GetAllDirectories(string path, ref List<string> DirectoriesList)
         {
             DirectoryInfo di = new DirectoryInfo(path);
             if (di.GetDirectories().Length == 0)
