@@ -22,11 +22,11 @@ namespace TotalSearch
             folderBrowserDialog1.ShowDialog();
             string path =  folderBrowserDialog1.SelectedPath;
             List<string> FilesList = Utilities.DirTools.GetAllFiles(path);
-            foreach(var f in FilesList)
-            {
-                textBox1.Text = textBox1.Text + f + "\r\n";
-            }
-            textBox1.Text = textBox1.Text + FilesList.Count.ToString();
+            //foreach(var f in FilesList)
+            //{
+            //    textBox1.Text = textBox1.Text + f + "\r\n";
+            //}
+            //textBox1.Text = textBox1.Text + FilesList.Count.ToString();
         }
     }
 }
