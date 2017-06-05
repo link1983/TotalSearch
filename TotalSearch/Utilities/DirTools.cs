@@ -39,16 +39,36 @@ namespace TotalSearch.Utilities
 
         void GetFiles_Action()
         {
-            while(DirectoriesList.Count!=0)
-            {
-                    DirectoryInfo di = new DirectoryInfo(DirectoriesList[0]);
-                    DirectoriesList.RemoveAt(0); //立刻删除头元素，否则会被其它线程获取到同一元素，没有锁，有隐患。
+            DirectoryInfo di;
+            //while (DirectoriesList.Count >100)
+            //{
+            //    di = new DirectoryInfo(DirectoriesList[0]);
+            //    DirectoriesList.RemoveAt(0); //立刻删除头元素，否则会被其它线程获取到同一元素，没有锁，有隐患。
+            //    foreach (var f in di.GetFiles())
+            //    {
+            //        FilesList.Add(f.FullName);
+            //    }
 
-                    foreach (var f in di.GetFiles())
+            //}
+            while (true)
+            {
+                lock (DirectoriesList)
+                {
+                    if (DirectoriesList.Count != 0)
                     {
-                        FilesList.Add(f.FullName);
+                        di = new DirectoryInfo(DirectoriesList[0]);
+                        DirectoriesList.RemoveAt(0); //立刻删除头元素，否则会被其它线程获取到同一元素，没有锁，有隐患。
                     }
+                    else
+                        break;
+                }
+                foreach (var f in di.GetFiles())
+                {
+                    FilesList.Add(f.FullName);
+                }
+                    
             }
+            
         }
 
         void GetAllDirectories(string path, ref List<string> DirectoriesList)
