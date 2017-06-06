@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TotalSearch.Utilities;
+using TotalSearch.FileParsers;
 
 namespace TotalSearch
 {
@@ -23,21 +24,10 @@ namespace TotalSearch
             folderBrowserDialog1.ShowDialog();
             string path =  folderBrowserDialog1.SelectedPath;
             List<string> FilesList = DirTools.GetAllFiles(path);
-            SqliteHelper sqlHelper = new SqliteHelper();
-            int error = 0;
-            foreach (var f in FilesList)
-            {
-                try
-                {
-                    if(f.Contains("'")==false)
-                        sqlHelper.ExecuteNonQuery($"insert into Files(fullname,gettime) values('{f}','{DateTime.Now}')");
-                }
-                catch
-                {
-                    error = error + 1;
-                    textBox1.Text = error.ToString();
-                }
-            }
+            ParserManager pm = new ParserManager();
+            int errornums=pm.SaveSupportedFiles(FilesList);
+            textBox1.Text = errornums.ToString();
+
 
         }
 

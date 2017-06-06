@@ -7,6 +7,7 @@ namespace TotalSearch.FileParsers
 {
     class TxtParser
     {
+        public static string supportedFileTypies = "|.txt";
         public void Foo()
         {
             Console.WriteLine("Hello Txt!");
