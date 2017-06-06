@@ -45,7 +45,7 @@ namespace TotalSearch
 
         private void button3_Click(object sender, EventArgs e)
         {
-            textBox1.Text = textBox1.Text + ":"+DESEncrypt.Encrypt(textBox1.Text);            
+            textBox1.Text = textBox1.Text + ":"+MD5Tools.GetMD5(textBox1.Text);            
         }
 
         private void button4_Click(object sender, EventArgs e)
