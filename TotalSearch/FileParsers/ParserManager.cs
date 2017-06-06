@@ -44,7 +44,7 @@ namespace TotalSearch.FileParsers
                 {
                     if (f.Contains("'") == false)
                     {
-                        sqlHelper.ExecuteNonQuery($"insert into Files(MD5,fullname,gettime) values('{DESEncrypt.Encrypt(f)}','{f}','{DateTime.Now}')");
+                        sqlHelper.ExecuteNonQuery($"insert into Files(MD5,fullname,gettime) values('{MD5Tools.GetMD5(f)}','{f}','{DateTime.Now}')");
                     }
                 }
                 catch
