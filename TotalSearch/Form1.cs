@@ -42,5 +42,15 @@ namespace TotalSearch
         {
             textBox2.Text = SqliteHelper.connString;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = textBox1.Text + ":"+DESEncrypt.Encrypt(textBox1.Text);            
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = textBox1.Text + ":" + DESEncrypt.Decrypt(textBox1.Text);
+        }
     }
 }
