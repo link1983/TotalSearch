@@ -30,10 +30,7 @@ namespace TotalSearch
             dataGridView1.DataSource = ds;
             dataGridView1.DataMember = "ds";
 
-            //List<FileInfo> FilesList = DirTools.GetAllFiles(path);
-            //ParserManager pm = new ParserManager();
-            //int errornums=pm.SaveSupportedFiles(FilesList);
-            //textBox1.Text = errornums.ToString();
+
 
 
         }
@@ -56,12 +53,10 @@ namespace TotalSearch
 
         private void button3_Click(object sender, EventArgs e)
         {
-            textBox1.Text = textBox1.Text + ":"+MD5Tools.GetMD5(textBox1.Text);            
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = textBox1.Text + ":" + DESEncrypt.Decrypt(textBox1.Text);
+            List<FileInfo> FilesList = DirTools.GetAllFiles("D:\\Microsoft Visual Studio");
+            ParserManager pm = new ParserManager();
+            int errornums = pm.SaveSupportedFiles(FilesList);
+            textBox1.Text = errornums.ToString();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -81,8 +76,8 @@ namespace TotalSearch
 
         private void button6_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
-            button6.Text = "关闭文件监视";
+            FilesMonitor fm = new FilesMonitor();
+            fm.SyncFiles();
         }
     }
 }
