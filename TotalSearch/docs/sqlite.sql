@@ -23,3 +23,7 @@ dir txt
 
 select count(*) from files
 select * from files where fullname like '%Linux%'
+
+delete from files
+
+delete from files where md5 not in (select md5 from LatestFiles)
