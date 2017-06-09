@@ -53,7 +53,8 @@ namespace TotalSearch
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            TxtParser tp = new TxtParser();
+            tp.Parse();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -10,9 +10,12 @@ namespace TotalSearch.FileParsers
 {
      class ParserManager
     {
+        public string supportedFileTypies = "";
 
         public ParserManager()
         {
+            TxtParser tp = new TxtParser();
+            supportedFileTypies += tp.supportedFileTypies;
         }
         
     }

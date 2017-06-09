@@ -2,15 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
+using System.IO;
+using TotalSearch.Utilities;
 
 namespace TotalSearch.FileParsers
 {
-    class TxtParser
+    class TxtParser:Parser
     {
-        public static string supportedFileTypies = "|.txt";
-        public void Foo()
+
+        public TxtParser()
         {
-            Console.WriteLine("Hello Txt!");
+            supportedFileTypies = "|.txt";
+        }
+
+        public override string GetString(string fullname)
+        {
+            string str = File.ReadAllText(fullname,Encoding.Default);
+            return str;
         }
     }
 }

@@ -15,7 +15,8 @@ namespace TotalSearch.FileParsers
 
         public FilesMonitor()
         {
-            supportedFileTypies = TxtParser.supportedFileTypies;
+            ParserManager pm = new ParserManager();
+            supportedFileTypies = pm.supportedFileTypies;
         }
 
         public void AddDirectories(string path)
