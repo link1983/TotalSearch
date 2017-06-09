@@ -34,17 +34,12 @@ namespace TotalSearch.Utilities
         static void GetAllDirectories(string path, ref List<string> DirectoriesList)
         {
             DirectoryInfo di = new DirectoryInfo(path);
-            if (di.GetDirectories().Length == 0)
+            DirectoriesList.Add(di.FullName);
+            foreach (var d in di.GetDirectories())
             {
-                DirectoriesList.Add(di.FullName);
+                GetAllDirectories(d.FullName, ref DirectoriesList);
             }
-            else
-            {
-                foreach (var d in di.GetDirectories())
-                {
-                    GetAllDirectories(d.FullName, ref DirectoriesList);
-                }
-            }
+            
         }
     }
 }
