@@ -53,10 +53,7 @@ namespace TotalSearch
 
         private void button3_Click(object sender, EventArgs e)
         {
-            List<FileInfo> FilesList = DirTools.GetAllFiles("D:\\Microsoft Visual Studio");
-            ParserManager pm = new ParserManager();
-            int errornums = pm.SaveSupportedFiles(FilesList);
-            textBox1.Text = errornums.ToString();
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -77,7 +74,7 @@ namespace TotalSearch
         private void button6_Click(object sender, EventArgs e)
         {
             FilesMonitor fm = new FilesMonitor();
-            fm.SyncFiles();
+            textBox1.Text = fm.SyncFiles();
         }
     }
 }

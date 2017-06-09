@@ -69,7 +69,7 @@ namespace TotalSearch.FileParsers
 
         }
 
-        public int SyncFiles()
+        public string SyncFiles()
         {
             
             List<FileInfo> ls = new List<FileInfo>();
@@ -89,7 +89,9 @@ namespace TotalSearch.FileParsers
             sqlHelper.ExecuteNonQuery($"delete from files where md5 not in (select md5 from LatestFiles)");
 
             //添加或更新文件
-            int errorNums = 0;
+            int errorCount = 0;
+            int insertCount = 0;
+            int updateCount = 0;
             foreach (var f in ls)
             {
                 try
@@ -101,7 +103,10 @@ namespace TotalSearch.FileParsers
                         string fileModifiedtime = f.LastWriteTime.ToString();
                         //如果数据库中不存在，直接添加
                         if (sqlHelper.ExecuteScalar($"select count(MD5) from Files where MD5='{fileMD5}'") != 1)
+                        {
                             sqlHelper.ExecuteNonQuery($"insert into Files(MD5,fullname,modifiedtime,gettime) values('{fileMD5}','{f.FullName}','{fileModifiedtime}','{DateTime.Now}')");
+                            insertCount = insertCount + 1;
+                        }
                         else
                         {
                             //如果数据库中存在，但是修改日期不一样，先删除，后添加
@@ -109,16 +114,18 @@ namespace TotalSearch.FileParsers
                             {
                                 sqlHelper.ExecuteNonQuery($"delete from Files where MD5='{fileMD5}'");
                                 sqlHelper.ExecuteNonQuery($"insert into Files(MD5,fullname,modifiedtime,gettime) values('{fileMD5}','{f.FullName}','{fileModifiedtime}','{DateTime.Now}')");
+                                updateCount = updateCount + 1;
                             }
                         }
                     }
                 }
                 catch
                 {
-                    errorNums = errorNums + 1;
+                    errorCount = errorCount + 1;
                 }
             }
-            return errorNums;
+            int total = sqlHelper.ExecuteScalar("select count(*) from files");
+            return "索引文件共计："+total.ToString()+"，新增："+insertCount.ToString()+"，更新："+updateCount.ToString()+"，错误："+errorCount.ToString();
         }
 
     }
