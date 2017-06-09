@@ -24,10 +24,12 @@ namespace TotalSearch
         {
             folderBrowserDialog1.ShowDialog();
             string path =  folderBrowserDialog1.SelectedPath;
-            List<FileInfo> FilesList = DirTools.GetAllFiles(path);
-            ParserManager pm = new ParserManager();
-            int errornums=pm.SaveSupportedFiles(FilesList);
-            textBox1.Text = errornums.ToString();
+
+
+            //List<FileInfo> FilesList = DirTools.GetAllFiles(path);
+            //ParserManager pm = new ParserManager();
+            //int errornums=pm.SaveSupportedFiles(FilesList);
+            //textBox1.Text = errornums.ToString();
 
 
         }

@@ -57,7 +57,7 @@ namespace TotalSearch.FileParsers
                             //如果数据库中存在，但是修改日期不一样，先删除，后添加
                             if(sqlHelper.ExecuteScalar($"select count(MD5) from Files where MD5='{fileMD5}' and modifiedtime<>'{fileModifiedtime}'")== 1)
                             {
-                                sqlHelper.ExecuteNonQuery($"delete from Files MD5='{fileMD5}'");
+                                sqlHelper.ExecuteNonQuery($"delete from Files where MD5='{fileMD5}'");
                                 sqlHelper.ExecuteNonQuery($"insert into Files(MD5,fullname,modifiedtime,gettime) values('{fileMD5}','{f.FullName}','{fileModifiedtime}','{DateTime.Now}')");
                             }
                         }

@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileParsers\FilesMonitor.cs" />
     <Compile Include="FileParsers\ParserManager.cs" />
     <Compile Include="FileParsers\TxtParser.cs" />
     <Compile Include="Form1.cs">
@@ -110,9 +111,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="docs\sqlite.sql" />
     <Content Include="TestFiles\01.txt" />
     <Content Include="TestFiles\dir1\02.txt" />
-    <Content Include="说明.txt" />
+    <Content Include="docs\说明.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
