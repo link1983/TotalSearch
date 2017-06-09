@@ -15,9 +15,9 @@ namespace TotalSearch.Utilities
             return DirectoriesList;
         }
 
-        public static List<string> GetAllFiles(string path)
+        public static List<FileInfo> GetAllFiles(string path)
         {
-            List<string> FilesList = new List<string>();
+            List<FileInfo> FilesList = new List<FileInfo>();
 
             List<string> DirectoriesList = GetAllDirectories(path);
             foreach(var d in DirectoriesList)
@@ -25,7 +25,7 @@ namespace TotalSearch.Utilities
                 DirectoryInfo di = new DirectoryInfo(d);
                 foreach (var f in di.GetFiles())
                 {
-                    FilesList.Add(f.FullName);
+                    FilesList.Add(f);
                 }
             }
             return FilesList;

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TotalSearch.Utilities;
 using TotalSearch.FileParsers;
+using System.IO;
 
 namespace TotalSearch
 {
@@ -23,7 +24,7 @@ namespace TotalSearch
         {
             folderBrowserDialog1.ShowDialog();
             string path =  folderBrowserDialog1.SelectedPath;
-            List<string> FilesList = DirTools.GetAllFiles(path);
+            List<FileInfo> FilesList = DirTools.GetAllFiles(path);
             ParserManager pm = new ParserManager();
             int errornums=pm.SaveSupportedFiles(FilesList);
             textBox1.Text = errornums.ToString();
