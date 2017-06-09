@@ -24,7 +24,11 @@ namespace TotalSearch
         {
             folderBrowserDialog1.ShowDialog();
             string path =  folderBrowserDialog1.SelectedPath;
-
+            FilesMonitor fm = new FilesMonitor();
+            fm.AddDirectories(path);
+            DataSet ds = fm.GetDirectories();
+            dataGridView1.DataSource = ds;
+            dataGridView1.DataMember = "ds";
 
             //List<FileInfo> FilesList = DirTools.GetAllFiles(path);
             //ParserManager pm = new ParserManager();
@@ -44,6 +48,10 @@ namespace TotalSearch
         private void Form1_Load(object sender, EventArgs e)
         {
             textBox2.Text = SqliteHelper.connString;
+            FilesMonitor fm = new FilesMonitor();
+            DataSet ds =  fm.GetDirectories();
+            dataGridView1.DataSource = ds;
+            dataGridView1.DataMember = "ds";
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -54,6 +62,27 @@ namespace TotalSearch
         private void button4_Click(object sender, EventArgs e)
         {
             textBox1.Text = textBox1.Text + ":" + DESEncrypt.Decrypt(textBox1.Text);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string dir = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+            FilesMonitor fm = new FilesMonitor();
+            fm.DeleteDirectories(dir);
+            DataSet ds = fm.GetDirectories();
+            dataGridView1.DataSource = ds;
+            dataGridView1.DataMember = "ds";
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
+            button6.Text = "关闭文件监视";
         }
     }
 }
