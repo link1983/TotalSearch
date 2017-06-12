@@ -77,5 +77,10 @@ namespace TotalSearch
             FilesMonitor fm = new FilesMonitor();
             textBox1.Text = fm.SyncFiles();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

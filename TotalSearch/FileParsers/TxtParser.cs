@@ -16,7 +16,7 @@ namespace TotalSearch.FileParsers
             supportedFileTypies = "|.txt";
         }
 
-        public override string GetString(string fullname)
+        protected override string GetString(string fullname)
         {
             string str = File.ReadAllText(fullname,Encoding.Default);
             return str;

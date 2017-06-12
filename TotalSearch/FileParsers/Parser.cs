@@ -16,10 +16,12 @@ namespace TotalSearch.FileParsers
             string[] Typies = supportedFileTypies.Split('|');
             List<DataSet> files = new List<DataSet>();
             SqliteHelper sqlHelper = new SqliteHelper();
+            //取出所有支持的文件
             foreach (var t in Typies)
             {
                 files.Add(sqlHelper.QueryBySQL($"select md5,fullname,parsetime from files where fullname like '%{t}'"));
             }
+            //遍历每个ds
             foreach (var ds in files)
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)
@@ -34,7 +36,7 @@ namespace TotalSearch.FileParsers
                 }
             }
         }
-        public virtual string GetString(string fullname)
+        protected virtual string GetString(string fullname)
         {
             return "Foo";
         }
