@@ -27,12 +27,7 @@ namespace TotalSearch
             FilesMonitor fm = new FilesMonitor();
             fm.AddDirectories(path);
             DataSet ds = fm.GetDirectories();
-            dataGridView1.DataSource = ds;
-            dataGridView1.DataMember = "ds";
-
-
-
-
+            dataGridView1.DataSource = ds.Tables[0];
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -47,8 +42,7 @@ namespace TotalSearch
             textBox2.Text = SqliteHelper.connString;
             FilesMonitor fm = new FilesMonitor();
             DataSet ds =  fm.GetDirectories();
-            dataGridView1.DataSource = ds;
-            dataGridView1.DataMember = "ds";
+            dataGridView1.DataSource = ds.Tables[0];
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -68,8 +62,7 @@ namespace TotalSearch
             FilesMonitor fm = new FilesMonitor();
             fm.DeleteDirectories(dir);
             DataSet ds = fm.GetDirectories();
-            dataGridView1.DataSource = ds;
-            dataGridView1.DataMember = "ds";
+            dataGridView1.DataSource = ds.Tables[0];
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -80,7 +73,11 @@ namespace TotalSearch
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            Searcher searcher = new Searcher();
+            DataSet ds = searcher.Search(textBox3.Text);
+            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns[1].Width = 30;
+            dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Descending);
         }
     }
 }
