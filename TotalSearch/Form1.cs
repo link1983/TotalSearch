@@ -79,5 +79,14 @@ namespace TotalSearch
             dataGridView1.Columns[1].Width = 30;
             dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Descending);
         }
+
+        private void 跳转到文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string fullName = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+            System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo("Explorer.exe");
+            psi.Arguments = "/e,/select," + fullName;
+            System.Diagnostics.Process.Start(psi);
+        }
+
     }
 }
