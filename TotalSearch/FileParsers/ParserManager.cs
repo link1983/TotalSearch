@@ -14,6 +14,7 @@ namespace TotalSearch.FileParsers
 
         public ParserManager()
         {
+            //每增加一个parser，就在这里添加
             TxtParser tp = new TxtParser();
             supportedFileTypies += tp.supportedFileTypies;
         }

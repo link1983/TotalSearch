@@ -9,6 +9,9 @@ using System.Data;
 
 namespace TotalSearch.FileParsers
 {
+    /// <summary>
+    /// 用来保持files表中的文件和用户设定的目录内的文件同步（包括文件是否修改过）
+    /// </summary>
     class FilesMonitor
     {
         string supportedFileTypies = "";
