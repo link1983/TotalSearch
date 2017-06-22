@@ -13,7 +13,7 @@ namespace TotalSearch.FileParsers
 
         public TxtParser()
         {
-            supportedFileTypies = "|.txt|.py|.cs|.log";
+            supportedFileTypies = ".txt|.py|.cs|.log|.js|.html|.htm|.css|.xml|.sql";
         }
 
         protected override string GetString(string fullname)

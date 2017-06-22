@@ -41,6 +41,7 @@ namespace TotalSearch.FileParsers
             sqlHelper.ExecuteNonQuery($"delete from Directories where dir='{dir}'");
         }
 
+        //待删，不需要过滤文件，因为文件名中可能包含关键词
         List<FileInfo> FilterSupportedFiles(List<FileInfo> FilesList)
         {
             List<FileInfo> supportedFiles = new List<FileInfo>();
@@ -78,7 +79,7 @@ namespace TotalSearch.FileParsers
             
             List<FileInfo> ls = new List<FileInfo>();
             ls = GetAllDirectoriesFiles();
-            ls = FilterSupportedFiles(ls);
+            //ls = FilterSupportedFiles(ls);
             SqliteHelper sqlHelper = new SqliteHelper();
 
             //保存最新的所有文件
