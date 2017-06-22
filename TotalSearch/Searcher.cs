@@ -14,7 +14,7 @@ namespace TotalSearch
         public DataSet Search(string keyword)
         {
             SqliteHelper sqlHelper = new SqliteHelper();
-            DataSet ds = sqlHelper.QueryBySQL($"select fullname,content from files where content like '%{keyword}%'");
+            DataSet ds = sqlHelper.QueryBySQL($"select fullname,content from files where content like '%{keyword}%' or fullname like '%{keyword}%'");
             string regPattern = keyword;
             ds.Tables[0].Columns.Add("weight", typeof(System.Int32));
 
