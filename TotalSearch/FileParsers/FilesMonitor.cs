@@ -84,6 +84,7 @@ namespace TotalSearch.FileParsers
 
             //保存最新的所有文件
             sqlHelper.ExecuteNonQuery($"delete from LatestFiles");
+
             foreach (var f in ls)
             {
                 string fileMD5 = MD5Tools.GetMD5(f.FullName);
