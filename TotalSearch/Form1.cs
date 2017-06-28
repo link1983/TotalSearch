@@ -49,6 +49,8 @@ namespace TotalSearch
         {
             TxtParser tp = new TxtParser();
             tp.Parse();
+            WordParser wp = new WordParser();
+            wp.Parse();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
