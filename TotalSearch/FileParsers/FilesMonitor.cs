@@ -76,7 +76,11 @@ namespace TotalSearch.FileParsers
 
         public string SyncFiles()
         {
-            
+            //添加或更新文件
+            int errorCount = 0;
+            int insertCount = 0;
+            int updateCount = 0;
+
             List<FileInfo> ls = new List<FileInfo>();
             ls = GetAllDirectoriesFiles();
             //ls = FilterSupportedFiles(ls);
@@ -87,17 +91,24 @@ namespace TotalSearch.FileParsers
 
             foreach (var f in ls)
             {
-                string fileMD5 = MD5Tools.GetMD5(f.FullName);
-                sqlHelper.ExecuteNonQuery($"insert into LatestFiles(md5,fullname) values('{fileMD5}','{f.FullName}')");
+                try
+                {
+                    if (f.FullName.Contains("'") == false)
+                    {
+                        string fileMD5 = MD5Tools.GetMD5(f.FullName);
+                        sqlHelper.ExecuteNonQuery($"insert into LatestFiles(md5,fullname) values('{fileMD5}','{f.FullName}')");
+                    }
+                }
+                catch
+                {
+                    errorCount += 1;
+                }
             }
 
             //删除过期的文件
             sqlHelper.ExecuteNonQuery($"delete from files where md5 not in (select md5 from LatestFiles)");
 
-            //添加或更新文件
-            int errorCount = 0;
-            int insertCount = 0;
-            int updateCount = 0;
+
             foreach (var f in ls)
             {
                 try

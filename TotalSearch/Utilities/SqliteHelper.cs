@@ -41,10 +41,11 @@ namespace TotalSearch.Utilities
             SQLiteCommand sqlCmd = new SQLiteCommand(strSQL, myConn);
             myConn.Open();
             int rs = sqlCmd.ExecuteNonQuery();
-            //cmd必须dispose掉，否者在大量数据循环调用时，占用大量内存
+            //cmd必须dispose掉，否者在大量数据循环调用时，占用大量内存，GC在循环完了后才去释放。
             sqlCmd.Dispose(); 
             myConn.Close();
             return rs;
         }
+
     }
 }
