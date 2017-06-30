@@ -114,7 +114,7 @@ namespace TotalSearch.FileParsers
                 try
                 {
                     //排除含有'符号的文件，否则插入数据库会出错
-                    if (f.FullName.Contains("'") == false)
+                    if (f.FullName.Contains("'") == false||f.FullName.Contains("~")==false)
                     {
                         string fileMD5 = MD5Tools.GetMD5(f.FullName);
                         string fileModifiedtime = f.LastWriteTime.ToString();

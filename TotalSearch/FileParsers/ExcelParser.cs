@@ -19,21 +19,21 @@ namespace TotalSearch.FileParsers
             try
             {
                 Application ExcelApp = new Application();
-                Workbook ExcelWorkBook = new Workbook();
                 ExcelApp.Visible = false;
                 object missing = System.Reflection.Missing.Value;
-                ExcelWorkBook = ExcelApp.Workbooks.Open(fullname, missing, true, missing, missing, missing,
+                Workbook ExcelWorkBook = ExcelApp.Workbooks.Open(fullname, missing, true, missing, missing, missing,
                              missing, missing, missing, missing, missing, missing, missing, missing, missing);
                 //Open(FileName, UpdateLinks, ReadOnly, Format, Password, WriteResPassword, IgnoreReadOnlyRecommended, Origin, Delimiter, Editable, Notify, Converter, AddToMru, Local, CorruptLoad)
                 string content = "";
-                for (int i=0;i< ExcelWorkBook.Worksheets.Count; i++)
+                //Excel的索引是从1开始的
+                for (int i=1;i<=ExcelWorkBook.Worksheets.Count; i++)
                 {
                     Worksheet ws = ExcelWorkBook.Worksheets[i];
-                    for(int r = 0;r<ws.UsedRange.Rows.Count;r++)
+                    for(int r = 1;r<=ws.UsedRange.Cells.Rows.Count;r++)
                     {
-                        for(int c=0;c< ws.UsedRange.Columns.Count;c++)
+                        for(int c=1;c<=ws.UsedRange.Cells.Columns.Count;c++)
                         {
-                            string str = ((Range)ws.Cells[r, c]).Text;
+                            string str = ((Range)ws.UsedRange.Cells[r, c]).Text;
                             content = content + str;
                         }
                     }

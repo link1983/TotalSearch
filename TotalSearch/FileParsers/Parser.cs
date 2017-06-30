@@ -35,7 +35,15 @@ namespace TotalSearch.FileParsers
                         string md5 = dr[0].ToString();
                         //获取到文件的文本后，去掉'防止SQL语句出错，并且全部转为小写字母，因为正则表达式是区分大小写的。
                         string content = GetString(dr[1].ToString()).Replace("'", "''").ToLower();
-                        sqlHelper.ExecuteNonQuery($"update files set parsetime='{DateTime.Now}',content='{content}' where md5='{md5}'");
+                        try
+                        {
+                            sqlHelper.ExecuteNonQuery($"update files set parsetime='{DateTime.Now}',content='{content}' where md5='{md5}'");
+                        }
+                        catch (Exception ex)
+                        {
+                            string error = "!false!" + ex.Message;
+                            sqlHelper.ExecuteNonQuery($"update files set parsetime='{DateTime.Now}',content={error} where md5='{md5}'");
+                        }
                     }
                 }
             }
