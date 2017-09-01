@@ -11,6 +11,7 @@ namespace TotalSearch.FileParsers
     class Parser
     {
         public string supportedFileTypies="";
+
         /// <summary>
         /// 遍历数据库中支持的格式的文件，分析出文本内容然后更新数据库
         /// </summary>
@@ -24,6 +25,7 @@ namespace TotalSearch.FileParsers
             {
                 files.Add(sqlHelper.QueryBySQL($"select md5,fullname,parsetime from files where fullname like '%{t}'"));
             }
+
             //遍历每个ds
             foreach (var ds in files)
             {
@@ -48,6 +50,8 @@ namespace TotalSearch.FileParsers
                 }
             }
         }
+
+
         /// <summary>
         /// 由各种文档分析子类去具体实现如何获取文本
         /// </summary>

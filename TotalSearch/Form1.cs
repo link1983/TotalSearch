@@ -47,13 +47,14 @@ namespace TotalSearch
 
         private void button3_Click(object sender, EventArgs e)
         {
-            TxtParser tp = new TxtParser();
-            tp.Parse();
-            WordParser wp = new WordParser();
-            wp.Parse();
-            ExcelParser ep = new ExcelParser();
-            ep.Parse();
+
+            ParserManager pm = new ParserManager();
+            Action a = new Action(pm.ParseAll);
+            Task t = new Task(a);
+            t.Start();
         }
+
+
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

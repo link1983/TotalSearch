@@ -23,6 +23,16 @@ namespace TotalSearch.FileParsers
             supportedFileTypies += ep.supportedFileTypies;
         }
 
+        public void ParseAll()
+        {
+            TxtParser tp = new TxtParser();
+            tp.Parse();
+            WordParser wp = new WordParser();
+            wp.Parse();
+            ExcelParser ep = new ExcelParser();
+            ep.Parse();
+        }
+
         /// <summary>
         /// 获取各种支持类型的文件数量信息
         /// </summary>
@@ -35,8 +45,10 @@ namespace TotalSearch.FileParsers
             string result = "";
             foreach (var t in Typies)
             {
-                string count = sqlHelper.ExecuteScalar($"select count(*) from files where fullname like '%{t}'").ToString();
-                result = result + t + ":" + count+" ";
+                string count1 = sqlHelper.ExecuteScalar($"select count(*) from files where fullname like '%{t}'").ToString();
+                string count2 = sqlHelper.ExecuteScalar($"select count(*) from files where fullname like '%{t}' and (parsetime is null or parsetime='')").ToString();
+
+                result = result + t + ":" + count2+"/"+count1+" ";
             }
             return result;
         }
