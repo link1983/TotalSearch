@@ -37,14 +37,15 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.跳转到文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button7 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.跳转到文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +66,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(21, 226);
+            this.textBox1.Location = new System.Drawing.Point(21, 442);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -92,7 +93,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(21, 317);
+            this.button3.Location = new System.Drawing.Point(21, 533);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 5;
@@ -114,9 +115,23 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(477, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(934, 366);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.跳转到文件ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(131, 26);
+            // 
+            // 跳转到文件ToolStripMenuItem
+            // 
+            this.跳转到文件ToolStripMenuItem.Name = "跳转到文件ToolStripMenuItem";
+            this.跳转到文件ToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.跳转到文件ToolStripMenuItem.Text = "跳转到文件";
+            this.跳转到文件ToolStripMenuItem.Click += new System.EventHandler(this.跳转到文件ToolStripMenuItem_Click);
             // 
             // button5
             // 
@@ -141,6 +156,7 @@
             // timer1
             // 
             this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // button7
             // 
@@ -150,10 +166,11 @@
             this.button7.TabIndex = 10;
             this.button7.Text = "索引文件";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(260, 290);
+            this.button4.Location = new System.Drawing.Point(251, 504);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 11;
@@ -164,30 +181,27 @@
             // textBox3
             // 
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Location = new System.Drawing.Point(21, 290);
+            this.textBox3.Location = new System.Drawing.Point(21, 506);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(224, 21);
             this.textBox3.TabIndex = 12;
             // 
-            // contextMenuStrip1
+            // button8
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.跳转到文件ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(131, 26);
-            // 
-            // 跳转到文件ToolStripMenuItem
-            // 
-            this.跳转到文件ToolStripMenuItem.Name = "跳转到文件ToolStripMenuItem";
-            this.跳转到文件ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.跳转到文件ToolStripMenuItem.Text = "跳转到文件";
-            this.跳转到文件ToolStripMenuItem.Click += new System.EventHandler(this.跳转到文件ToolStripMenuItem_Click);
+            this.button8.Location = new System.Drawing.Point(504, 442);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(96, 23);
+            this.button8.TabIndex = 13;
+            this.button8.Text = "当前文件信息";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 353);
+            this.ClientSize = new System.Drawing.Size(962, 568);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button7);
@@ -227,6 +241,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 跳转到文件ToolStripMenuItem;
+        private System.Windows.Forms.Button button8;
     }
 }
 

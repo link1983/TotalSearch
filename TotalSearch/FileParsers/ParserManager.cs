@@ -14,10 +14,32 @@ namespace TotalSearch.FileParsers
 
         public ParserManager()
         {
-            //每增加一个parser，就在这里添加
+            //每增加一个parser，就在这里添加,最后一个不加“|”，否者会多出一个空的后缀名
             TxtParser tp = new TxtParser();
-            supportedFileTypies += tp.supportedFileTypies;
+            WordParser wp = new WordParser();
+            ExcelParser ep = new ExcelParser();
+            supportedFileTypies += tp.supportedFileTypies + "|";
+            supportedFileTypies += wp.supportedFileTypies + "|";
+            supportedFileTypies += ep.supportedFileTypies;
         }
-        
+
+        /// <summary>
+        /// 获取各种支持类型的文件数量信息
+        /// </summary>
+        /// <returns></returns>
+        public string GetSupportedFilesCount()
+        {
+            string[] Typies = supportedFileTypies.Split('|');
+            SqliteHelper sqlHelper = new SqliteHelper();
+
+            string result = "";
+            foreach (var t in Typies)
+            {
+                string count = sqlHelper.ExecuteScalar($"select count(*) from files where fullname like '%{t}'").ToString();
+                result = result + t + ":" + count+" ";
+            }
+            return result;
+        }
+
     }
 }

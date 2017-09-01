@@ -92,5 +92,22 @@ namespace TotalSearch
             System.Diagnostics.Process.Start(psi);
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            ParserManager pm = new ParserManager();
+            textBox1.Text = pm.supportedFileTypies + "\n";
+            textBox1.Text = textBox1.Text + pm.GetSupportedFilesCount();
+
+        }
     }
 }
